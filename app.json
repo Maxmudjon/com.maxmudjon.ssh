@@ -1,0 +1,156 @@
+{
+  "id": "com.maxmudjon.ssh",
+  "version": "1.0.0",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "Secure Shell"
+  },
+  "brandColor": "#000000",
+  "tags": {
+    "en": ["ssh"]
+  },
+  "description": {
+    "en": "Secure Shell"
+  },
+  "category": ["appliances"],
+  "permissions": [],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Maxmudjon Payziyev",
+    "email": "bio42@mail.ru"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Maxmudjon Payziyev",
+        "email": "bio42@mail.ru"
+      }
+    ],
+    "translators": [
+      {
+        "name": "Maxmudjon Payziyev"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "https://www.paypal.me/Sallo"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/Maxmudjon/com.maxmudjon.ssh/issues"
+  },
+  "drivers": [
+    {
+      "id": "ssh",
+      "name": {
+        "en": "SSH"
+      },
+      "class": "other",
+      "capabilities": [],
+      "images": {
+        "large": "/drivers/ssh/assets/images/large.png",
+        "small": "/drivers/ssh/assets/images/small.png"
+      },
+      "pair": [
+        {
+          "id": "addDevice",
+          "navigation": {
+            "next": "done"
+          }
+        },
+        {
+          "id": "done",
+          "navigation": {
+            "prev": "addDevice"
+          }
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Server settings"
+          },
+          "children": [
+            {
+              "id": "serverName",
+              "type": "text",
+              "label": {
+                "en": "Servername"
+              },
+              "value": ""
+            },
+            {
+              "id": "ip",
+              "type": "text",
+              "label": {
+                "en": "Hostname"
+              },
+              "value": ""
+            },
+            {
+              "id": "port",
+              "type": "number",
+              "label": {
+                "en": "Port",
+                "nl": "Poort"
+              },
+              "value": 22,
+              "attr": {
+                "min": 1,
+                "max": 65535
+              }
+            },
+            {
+              "id": "username",
+              "type": "text",
+              "label": {
+                "en": "Username"
+              },
+              "value": ""
+            },
+            {
+              "id": "password",
+              "type": "password",
+              "label": {
+                "en": "Password"
+              },
+              "value": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "actions": [
+      {
+        "id": "send",
+        "title": {
+          "en": "Send Command"
+        },
+        "args": [
+          {
+            "name": "command",
+            "type": "text",
+            "placeholder": {
+              "en": "Command"
+            }
+          },
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=ssh"
+          }
+        ]
+      }
+    ]
+  }
+}

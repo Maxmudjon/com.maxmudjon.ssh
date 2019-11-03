@@ -1,0 +1,48 @@
+<script src="../../../assets/vue.min.js"></script>
+<link rel="stylesheet" href="../../../assets/bootstrap.min.css" />
+
+<div id="addDeviceApp">
+  <div class="row align-items-center alert alert-light" role="alert" id="status" style="width:100%; margin-left: 0px; margin-right: 0px;">
+    <div class="input-group mb-3"><input type="text" class="form-control" v-model="name" aria-describedby="basic-addon3" placeholder="Name" /></div>
+    <div class="input-group mb-3"><input type="text" class="form-control" v-model="ip" aria-describedby="basic-addon3" placeholder="IP Address" /></div>
+    <div class="input-group mb-3"><small id="period" class="form-text text-muted">Polling period, seconds</small></div>
+    <div class="input-group mb-3"><input type="number" class="form-control" v-model="port" aria-describedby="basic-addon3" placeholder="60" min="5" max="3600" /></div>
+    <div class="input-group mb-3"><input type="text" class="form-control" v-model="username" aria-describedby="basic-addon3" placeholder="Username" /></div>
+    <div class="input-group mb-3"><input type="text" class="form-control" v-model="password" aria-describedby="basic-addon3" placeholder="Password" /></div>
+    <div class="col" style="padding-right: 0px;"><button @click.prevent="save" type="button" class="btn btn-primary float-right" style="height: auto;">Save</button></div>
+  </div>
+  <button @click.prevent="addDevice" type="button" class="btn btn-primary btn-lg btn-block" style="height: auto; display: none;" id="addDevice">Add</button>
+</div>
+
+<script>
+  Homey.setTitle("Add SSH Client");
+  setTimeout(() => {
+    Homey.setNavigationClose();
+  }, 1);
+
+  new Vue({
+    el: "#addDeviceApp",
+    data() {
+      return {
+        name: "",
+        ip: "",
+        port: 22,
+        username: "",
+        password: ""
+      };
+    },
+    methods: {
+      save() {
+        let addDevice = document.getElementById("addDevice"),
+          data = { ip: this.ip, port: this.port, name: this.name, username: this.username, password: this.password };
+
+        Homey.emit("save", data, (error, result) => {
+          addDevice.style.removeProperty("display");
+        });
+      },
+      addDevice() {
+        Homey.showView("done");
+      }
+    }
+  });
+</script>
