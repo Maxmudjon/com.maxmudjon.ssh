@@ -13,6 +13,6 @@
   "author": "Payziyev Maxmudjon",
   "license": "ISC",
   "dependencies": {
-    "ssh2": "^0.8.5"
+    "ssh2": "^1.4.0"
   }
 }
